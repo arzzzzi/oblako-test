@@ -1,18 +1,35 @@
 ﻿@model WebApplication1.Models.Product
  
-<h1>Изменить</h1>
- 
-<form asp-action="Edit" asp-route-id="@Model.ID">
-    <input type="hidden" asp-for="ID" />
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+
+
+<div class="modal fade" id="editProduct">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="editProductLabel">Изменить продукт</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>X</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Edit" asp-route-id="@Model.ID">
+                    <input type="hidden" asp-for="ID" />
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary" id="saveEditButton">Сохранить</button>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <input asp-for="Description" class="form-control" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Сохранить</button>
-</form>
+</div>

@@ -1,13 +1,5 @@
 ﻿@model IEnumerable<WebApplication1.Models.Product>
 
-<h1>Продукты</h1>
-
-<div id="PlaceHolderHere"></div>
-
-<button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addProduct"
-    data-url="@Url.Action("Create")">Добавить продукт
-</button>
-
 <table class="table">
     <thead>
         <tr>
@@ -25,14 +17,10 @@
                 <td>@product.Name</td>
                 <td>@product.Description</td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-toggle="ajax-modal-edit" data-target="#editProduct" data-url="@Url.Action("Edit", new { id = product.ID })">
-                        Изменить
-                    </button> |
+                    <a asp-action="Edit" asp-route-id="@product.ID">Изменить</a> |
                     <a asp-action="Delete" asp-route-id="@product.ID">Удалить</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-
