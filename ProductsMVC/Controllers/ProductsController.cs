@@ -53,7 +53,7 @@ public class ProductsController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> UpdateProduct(Guid id)
+    public async Task<IActionResult> Edit(Guid id)
     {
         var client = _httpClientFactory.CreateClient("WebAPI");
         var response = await client.GetAsync($"api/Products/{id}");
@@ -69,7 +69,7 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateProduct(Guid id, Product product)
+    public async Task<IActionResult> Edit(Guid id, Product product)
     {
         if (id != product.ID)
         {

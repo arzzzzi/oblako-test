@@ -27,18 +27,19 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            return await _context.Products.ToListAsync();
+            var products = await _context.Products.OrderBy(p => p.Name).ToListAsync();
+            return products;
 
         }
 
-        [HttpGet("{name}")]
-        public async Task<ActionResult<Product>> GetProduct(string name)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Product>> GetProduct(Guid id)
         {
             if (_context.Products == null)
             {
                 return NotFound();
             }
-            var product = await _context.Products.FirstOrDefaultAsync(p => p.Name == name);
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.ID == id);
             
             if(product == null)
             {
@@ -53,7 +54,7 @@ namespace WebApplication1.Controllers
         {
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetProduct), new { name = product.Name }, product);
+            return CreatedAtAction(nameof(GetProduct), new { id = product.ID}, product);
         }
 
         [HttpPut("{id}")]
