@@ -49,7 +49,7 @@ public class ProductsController : Controller
         var response = await client.PostAsJsonAsync("api/Products", product);
         response.EnsureSuccessStatusCode();
 
-        return RedirectToAction("Index", "Products");
+        return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]
@@ -80,7 +80,7 @@ public class ProductsController : Controller
         var response = await client.PutAsJsonAsync($"api/Products/{id}", product);
         response.EnsureSuccessStatusCode();
 
-        return RedirectToAction("Index", "Products");
+        return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]
@@ -90,7 +90,7 @@ public class ProductsController : Controller
         var response = await client.DeleteAsync($"api/Products/{id}");
         response.EnsureSuccessStatusCode();
 
-        return RedirectToAction("Index", "Products");
+        return RedirectToAction(nameof(Index));
     }
 }
 
